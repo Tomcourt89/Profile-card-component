@@ -1,4 +1,4 @@
-![](./screenshot.jpg)
+![](./Screenshot.jpg)
 
 ## Table of contents
 

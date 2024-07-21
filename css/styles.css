@@ -3,6 +3,133 @@
     --dark-blue: hsl(229, 23%, 23%);
     --gray-blue: hsl(227, 10%, 46%);
     --gray: hsl(0, 0%, 59%);
+    --white: #fff;
 
     --font-body: "Kumbh Sans", sans-serif;
+}
+
+*,
+::before,
+::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--gray-blue);
+
+    & h2,
+    & h3 {
+        color: var(--dark-blue);
+        font-size: 1.125rem;
+    }
+}
+
+.wrapper {
+    --bg-size: 622px;
+
+    display: grid;
+    grid-template-rows: 95% 1fr;
+    place-items: center;
+    height: 100vh;
+    background: var(--dark-cyan);
+    position: relative;
+    overflow: hidden;
+    padding-inline: 25px;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: calc((100vh / 2) - var(--bg-size));
+        left: calc((100vw / 2) - var(--bg-size));
+        height: var(--bg-size);
+        width: var(--bg-size);
+        background: center / contain no-repeat url(../images/bg-pattern-top.svg);
+        opacity: 0.25;
+        z-index: 1;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: calc((100vh / 2) - var(--bg-size));
+        right: calc((100vw / 2) - var(--bg-size));
+        height: var(--bg-size);
+        width: var(--bg-size);
+        background: center / contain no-repeat url(../images/bg-pattern-bottom.svg);
+        opacity: 0.25;
+        z-index: 1;
+    }
+
+    @media (width >= 40em) {
+        --bg-size: 978px;
+
+        &::before,
+        &::after {
+            opacity: 0.5;
+        }
+    }
+}
+
+article {
+    display: flex;
+    flex-direction: column;
+    background: var(--white);
+    width: 100%;
+    max-width: 350px;
+    border-radius: 15px;
+    box-shadow: 0 50px 100px -20px hsla(197, 85%, 20%, 0.5);
+    overflow: hidden;
+    z-index: 2;
+
+    .profile {
+        display: grid;
+        grid-template-rows: repeat(2, minmax(140px, 1fr));
+        justify-content: center;
+        align-items: end;
+        background: top / contain no-repeat url(../images/bg-pattern-card.svg);
+
+        & img { 
+            justify-self: center;
+            transform: translateY(50%);
+            border-radius: 50%;
+            border: 5px solid var(--white);
+        }
+
+        .info {
+            padding-block: 24px;
+            text-align: center;
+
+            .age {
+                color: var(--gray-blue);
+                font-weight: 400;
+            }
+
+            & p {
+                margin-top: 8px;
+                font-size: 0.875rem;
+            }
+        }
+    }
+
+    .values ul {
+        display: flex;
+        justify-content: space-between;
+        list-style-type: none;
+        padding: 24px 40px;
+        border-top: 1px solid hsl(228, 9%, 92%);
+
+        & li {
+            display: grid;
+            place-items: center;
+            gap: 10px;
+
+            & p {
+                font-size: 0.625rem;
+                letter-spacing: 1.5px;
+            }
+        }
+    }
 }
